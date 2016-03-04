@@ -7,7 +7,17 @@ module.exports = {
   },
 
   index: function(req, res, next) {
-    res.status(200).json(books);
+    var results = [];
+    if (req.query.author) {
+      for (var i = 0; i < books.length; i++) {
+        if (req.query.author === books[i].author) {
+          results.push(books[i]);
+        }
+      }
+    } else {
+      results = books;
+    }
+    res.status(200).json(results);
   },
 
   show: function(req, res, next) {
