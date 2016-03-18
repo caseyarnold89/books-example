@@ -18,11 +18,11 @@
 
 var mongoose = require('mongoose');
 
-var Book = new mongoose.Schema({
-    title: {type: String },
-    // author: {type: String },
-    author: { type: mongoose.Schema.ObjectId, ref: 'Author' }, //the string after ref is what is the string is your module.exports of Author
-    rating: { type: Number, min: 1, max: 10 }
+var Author = new mongoose.Schema({
+    name: {type: String, maxLength: 60, required: true },
+    living: { type: Boolean },
+    age: {type: Number, min: 0 },
+    created_at: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Book', Book);
+module.exports = mongoose.model('Author', Author);

@@ -1,7 +1,6 @@
 {
   "name": "books",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +10,17 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
-    "express-session": "^1.13.0"
-  }
+    "express-session": "^1.13.0",
+    "mongojs": "^2.3.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caseyarnold89/books-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/caseyarnold89/books-example/issues"
+  },
+  "homepage": "https://github.com/caseyarnold89/books-example#readme",
+  "description": ""
 }

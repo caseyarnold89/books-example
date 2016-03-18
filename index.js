@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var mongoose = require('mongoose');
 
 var BookController = require('./controllers/BookController');
 
@@ -23,10 +24,10 @@ app.use(session({
 }));
 
 app.get('/books', logger, BookController.index);
-app.get('/books/:idx', BookController.show);
-app.put('/books/:idx', BookController.update);
+app.get('/books/:id', BookController.show);
+app.put('/books/:id', BookController.update);
 app.post('/books', BookController.create);
-app.delete('/books/:idx', BookController.destroy);
+app.delete('/books/:id', BookController.destroy);
 
 app.get('/cart', function(req, res, next) {
   res.status(200).json(req.session.cart);
@@ -39,6 +40,14 @@ app.post('/cart', function(req, res, next) {
 });
 
 var port = 3000;
-app.listen(port, function() {
-  console.log('listening to port ', port);
+var mongoURI = 'mongodb://localhost:27017/biblioteca';
+
+mongoose.connect(mongoURI);
+mongoose.connection.once('open', function() {
+    console.log("Connected to Mongo with mongoose");
+    app.listen(port, function() {
+        console.log('listening to port ', port);
+    });
 });
+
+mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
